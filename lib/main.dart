@@ -105,20 +105,7 @@ class MyApp extends StatelessWidget {
 //         centerTitle: true,
 //         backgroundColor: Color.fromARGB(255, 38, 219, 56),
 //       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             if (_image != null)
-//               Image.file(
-//                 File(_image!.path),
-//                 height: 200,
-//                 width: 200,
-//                 fit: BoxFit.cover,
-//               )
-//             else
-//               Text('No image selected'),
-//             SizedBox(height: 20),
+//         SizedBox(height: 20),
 //             ElevatedButton(
 //               style: ElevatedButton.styleFrom(
 //                 backgroundColor: Color.fromARGB(255, 54, 214, 105),
