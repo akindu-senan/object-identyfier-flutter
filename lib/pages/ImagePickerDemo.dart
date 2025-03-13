@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
-import 'SuggestionsPage.dart'; // Import the new page
+import 'SuggestionsPage.dart';
 
 class ImagePickerDemo extends StatefulWidget {
   const ImagePickerDemo({super.key});
@@ -38,6 +38,7 @@ class _ImagePickerDemoState extends State<ImagePickerDemo> {
         setState(() {
           _image = image;
           file = File(image.path);
+          v = ""; // Reset the text box
         });
         detectimage(file!);
       }
@@ -92,23 +93,48 @@ class _ImagePickerDemoState extends State<ImagePickerDemo> {
               child: Text('Pick Image from Gallery'),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+
+            // Show the text box and button only when an image is uploaded
+            if (_image != null) ...[
+              SizedBox(height: 20),
+              Container(
+                width: 300,
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 2),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  v.isNotEmpty ? v : "No text detected",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SuggestionsPage()),
-                );
-              },
-              child: Text('Go to Suggestions'),
-            ),
-            SizedBox(height: 100),
-            Text(
-              v,
-              maxLines: 4,
-            ),
+              SizedBox(height: 20),
+
+              // "Go to Suggestions" button appears AFTER the text box
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SuggestionsPage()),
+                  );
+                },
+                child: Text('Go to Suggestions'),
+              ),
+            ]
           ],
         ),
       ),
