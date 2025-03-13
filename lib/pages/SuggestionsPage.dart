@@ -14,7 +14,7 @@ class SuggestionsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Suggestions"),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 195, 189, 70),
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(16),
@@ -28,7 +28,8 @@ class SuggestionsPage extends StatelessWidget {
                 suggestions[index],
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue),
+              trailing: Icon(Icons.arrow_forward_ios,
+                  color: Color.fromARGB(255, 33, 93, 243)),
               onTap: () {
                 // Navigate to a details page or show a dialog
                 Navigator.push(
@@ -58,7 +59,7 @@ class SuggestionDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 222, 243, 33),
       ),
       body: Center(
         child: Text(
